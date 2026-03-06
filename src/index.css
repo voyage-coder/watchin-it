@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow : 0 4px 20px #250298;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 2s ease forwards;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.hero-desc1 {
+  font-size: 18px;
+  text-shadow : 0 4px 10px #380bcd;
+  max-width: 500px;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+.hero-desc2 {
+  font-size: 18px;
+  text-shadow : 0 4px 10px #380bcd;
+  max-width: 500px;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 2s ease forwards;
+  animation-delay: 0.8s;
+}
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-1 {
+  padding: 12px 26px;
+  font-size: 17px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-1:hover {
+  transform: scale(1.08);
+  background: rgba(6, 0, 16, 0.495);
+  box-shadow: 0 4px 10px #380bcd;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-2 {
+  padding: 12px 26px;
+  font-size: 17px;
+  border-radius: 30px;
+  border: 3px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-2:hover {
+  background: rgba(6, 0, 16, 0.495);
+  border: 3px solid #380bcd;
+  color:rgb(243, 201, 112);
+  transform: scale(1.08);
+  font-weight: bold;
+}
+
+.navItem{
+  font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 500;
+  
+}
+
+.rs-navbar-nav a {
+    text-decoration: none;
+    transition: all 0.4s;
+    
+}
+
+.rs-navbar-nav a:hover {
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px #A6A6A6, 0 0 20px #A6A6A6, 0 0 30px #A6A6A6;
+}
+
+.rs-navbar-nav a:hover,
+.rs-navbar-nav a:focus,
+.rs-navbar-nav a.rs-navbar-nav:active {
+  background: transparent !important;
+}
+
+.rs-dropdown-menu {
+  background-color:black !important;   
+  border-radius: 10px !important;
+  border: 2px solid rgba(255, 255, 255, 0.685);
+}
+
+.rs-dropdown-item .rs-text {
+  color: rgba(255, 255, 255, 0.893) !important;
+}
+
+.rs-dropdown-item{
+  color: rgba(255, 255, 255, 0.674);
+}
+.rs-dropd#151dafm:hover {
+  color: #3c43cc !important;
+}
