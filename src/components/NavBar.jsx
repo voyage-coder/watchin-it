@@ -10,13 +10,13 @@ import {
   Dropdown,
   Divider
 } from "rsuite";
+import { Search, Bell } from "lucide-react";
 
 import { FaBookmark, FaHistory, FaCog } from "react-icons/fa";
 import { MdVideoLibrary } from "react-icons/md";
 
 import { IoLogoReact} from "react-icons/io5";
 import { FaBell } from "react-icons/fa";
-import SearchIcon from "@rsuite/icons/Search";
 import 'rsuite/dist/rsuite.min.css';
 import "../index.css";
 
@@ -28,7 +28,7 @@ const Brand = () => (
 
 const NavBar = () => {
   return (
-    <Navbar appearance="inverse" style={{backgroundColor: "black", margin: "1rem 1.5rem", borderRadius: "50px", boxShadow: "0 4px 20px #380bcd", backdropFilter: "blur(5px)", WebkitBackdropFilter: "blur(5px)", border: "1px solid rgba(255, 255, 255, 0.3)"}}>
+    <Navbar appearance="inverse" style={{backgroundColor: "black", margin: "1rem 1.5rem", borderRadius: "50px", boxShadow: "0 4px 20px #380bcd", backdropFilter: "blur(5px)", WebkitBackdropFilter: "blur(5px)", border: "1px solid rgba(255, 255, 255, 0.3)", position:"sticky", top: 0, zIndex:1000}}>
 
       {/* LEFT SIDE */}
       <Navbar.Content>
@@ -43,28 +43,75 @@ const NavBar = () => {
       </Navbar.Content>
 
       {/* SEARCH */}
-      <Navbar.Content>
-        <InputGroup inside style={{ marginLeft: "30px", width: 300 }}>
-          <Input placeholder="Search movies..." />
-          <InputGroup.Addon>
-            <SearchIcon />
-          </InputGroup.Addon>
-        </InputGroup>
+      <Navbar.Content style={{ marginLeft: "30px" }}>
+        
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "380px",
+            background: "#0f0f0f",
+            border: "1px solid #303030",
+            borderRadius: "30px",
+            overflow: "hidden"
+          }}
+        >
+
+          {/* input */}
+          <input
+            type="text"
+            placeholder="Search videos..."
+            style={{
+              flex: 1,
+              background: "transparent",
+              border: "none",
+              outline: "none",
+              padding: "8px 14px",
+              color: "white",
+              fontSize: "14px"
+            }}
+          />
+
+          {/* search button */}
+          <button type="submit" className="search-btn"
+            style={{
+              background: "#2a2a2a",
+              border: "none",
+              padding: "8px 16px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              transition: "0.2s"
+            }}
+            onMouseEnter={(e)=> e.target.style.background="#3a3a3a"}
+            onMouseLeave={(e)=> e.target.style.background="#2a2a2a"}
+          >
+            <Search size={18} color="white" />
+          </button>
+
+        </div>
+
       </Navbar.Content>
 
       {/* RIGHT SIDE */}
       <Navbar.Content pullRight>
-
-        <Badge content={6} >
-          <IconButton
-            icon={<FaBell size={40} color="rgb(211, 169, 78)" />}
-            circle
-            appearance="subtle"
-            size="lg"
-          />
+        <Badge content={6} style={{backgroundColor:"transparent"}}>
+          <div
+            style={{
+              background: "transparent",
+              padding: "8px",
+              borderRadius: "50%",
+              cursor: "pointer",
+              transition: "0.2s"
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#3a3a3a")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#2a2a2a")}
+          >
+            <Bell size={20} color="white" />
+          </div>
         </Badge>
         <div>
-        <Dropdown style={{color:"red"}}
+        <Dropdown style={{color:"black"}}
         placement="bottomEnd"
         renderToggle={(props, ref) => (
             <Avatar

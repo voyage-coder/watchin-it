@@ -103,7 +103,6 @@
 }
 
 .rs-navbar-nav a:hover {
-  letter-spacing: 4px;
   text-shadow: 0 0 10px #A6A6A6, 0 0 20px #A6A6A6, 0 0 30px #A6A6A6;
 }
 
@@ -128,4 +127,42 @@
 }
 .rs-dropd#151dafm:hover {
   color: #3c43cc !important;
+}
+
+.rs-input-group{
+  background-color: transparent;
+}
+
+
+/* hide scrollbar but allow scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.search-btn{
+  background-color: #3a3a3a;
+}
+
+.rs-btn:hover{
+  background-color: red;
+}
+
+.notif-icon{
+  padding:8px;
+  border-radius:50%;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.notif-icon:hover{
+  background:#3a3a3a;
+}
+
+.rs-badge{
+  background-color: transparent;
 }
