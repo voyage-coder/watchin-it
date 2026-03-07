@@ -1,167 +1,215 @@
-import React from "react";
-import {
-  Navbar,
-  Nav,
-  Avatar,
-  Badge,
-  IconButton,
-  Input,
-  InputGroup,
-  Dropdown,
-  Divider
-} from "rsuite";
-import { Search, Bell } from "lucide-react";
-
+import React, { useState } from "react";
+import { Avatar, Badge, Dropdown, Divider } from "rsuite";
+import { Search, Bell, Plus, Menu, X } from "lucide-react";
 import { FaBookmark, FaHistory, FaCog } from "react-icons/fa";
 import { MdVideoLibrary } from "react-icons/md";
+import "rsuite/dist/rsuite.min.css";
 
-import { IoLogoReact} from "react-icons/io5";
-import { FaBell } from "react-icons/fa";
-import 'rsuite/dist/rsuite.min.css';
-import "../index.css";
+export default function NavBar() {
 
-const Brand = () => (
-  <Navbar.Brand className="text-2xl font-bold" href="#">
-    <IoLogoReact size={26} /> WATCHIN IT
-  </Navbar.Brand>
-);
+  const [mobileSearch, setMobileSearch] = useState(false);
 
-const NavBar = () => {
+  const navItems = ["Home","Movies","Communities","Chat"];
+
   return (
-    <Navbar appearance="inverse" style={{backgroundColor: "black", margin: "1rem 1.5rem", borderRadius: "50px", boxShadow: "0 4px 20px #380bcd", backdropFilter: "blur(5px)", WebkitBackdropFilter: "blur(5px)", border: "1px solid rgba(255, 255, 255, 0.3)", position:"sticky", top: 0, zIndex:1000}}>
+    <div
+      className="
+      sticky top-0 z-50
+      w-full
+      bg-[#0b1228]/90
+      backdrop-blur-xl
+      text-white
+      border-b border-[#1f2a44]
+      rounded-4xl
+      px-3 sm:px-6
+      py-3
+      flex items-center justify-between
+      "
+    >
 
-      {/* LEFT SIDE */}
-      <Navbar.Content>
-        <Brand />
+      {/* LEFT */}
+      <div className="flex items-center gap-2 sm:gap-4">
 
-        <Nav style={{ gap: "20px", marginLeft: "30px"}}>
-            <Nav.Item className="navItem">Home</Nav.Item>
-            <Nav.Item className="navItem">Movies</Nav.Item>
-            <Nav.Item className="navItem">Communities</Nav.Item>
-            <Nav.Item className="navItem">Chat</Nav.Item>
-        </Nav>
-      </Navbar.Content>
+        {/* Responsive Logo */}
+        <div className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl">
+          WATCHIN IT
+        </div>
 
-      {/* SEARCH */}
-      <Navbar.Content style={{ marginLeft: "30px" }}>
-        
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            width: "380px",
-            background: "#0f0f0f",
-            border: "1px solid #303030",
-            borderRadius: "30px",
-            overflow: "hidden"
-          }}
-        >
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex gap-2">
 
-          {/* input */}
+          {navItems.map((item)=>(
+            <button
+              key={item}
+              className="
+              text-white
+              px-4 py-2
+              rounded-full
+              transition
+              hover:bg-[#1f2a44]
+              hover:-translate-y-[2px]
+              hover:shadow-md
+              "
+            >
+              {item}
+            </button>
+          ))}
+
+        </div>
+
+      </div>
+
+
+      {/* SEARCH (Tablet + Desktop) */}
+      <div className="hidden md:flex flex-1 justify-center px-4">
+
+        <div className="flex items-center w-full max-w-[420px] bg-[#0f172a] border border-[#1f2a44] rounded-full overflow-hidden">
+
           <input
-            type="text"
             placeholder="Search videos..."
-            style={{
-              flex: 1,
-              background: "transparent",
-              border: "none",
-              outline: "none",
-              padding: "8px 14px",
-              color: "white",
-              fontSize: "14px"
-            }}
+            className="
+            flex-1
+            bg-transparent
+            outline-none
+            px-4
+            py-2
+            text-white
+            text-sm
+            placeholder-gray-400
+            "
           />
 
-          {/* search button */}
-          <button type="submit" className="search-btn"
-            style={{
-              background: "#2a2a2a",
-              border: "none",
-              padding: "8px 16px",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              transition: "0.2s"
-            }}
-            onMouseEnter={(e)=> e.target.style.background="#3a3a3a"}
-            onMouseLeave={(e)=> e.target.style.background="#2a2a2a"}
-          >
-            <Search size={18} color="white" />
+          <button className="px-3 py-2 hover:bg-[#1f2a44]">
+            <Search size={18} color="white"/>
           </button>
 
         </div>
 
-      </Navbar.Content>
+      </div>
+
 
       {/* RIGHT SIDE */}
-      <Navbar.Content pullRight>
-        <Badge content={6} style={{backgroundColor:"transparent"}}>
-          <div
-            style={{
-              background: "transparent",
-              padding: "8px",
-              borderRadius: "50%",
-              cursor: "pointer",
-              transition: "0.2s"
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#3a3a3a")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#2a2a2a")}
-          >
-            <Bell size={20} color="white" />
-          </div>
-        </Badge>
-        <div>
-        <Dropdown style={{color:"black"}}
-        placement="bottomEnd"
-        renderToggle={(props, ref) => (
-            <Avatar
-            {...props}
-            ref={ref}
-            src="https://i.pravatar.cc/150?u=19"
-            circle
-            size="sm"
-            style={{ marginLeft: "12px", cursor: "pointer" }}
-            />
-        )}
+      <div className="flex items-center gap-2 sm:gap-3">
+
+        {/* Mobile Menu */}
+        <Dropdown
+          placement="bottomStart"
+          renderToggle={(props, ref)=>(
+            <button
+              {...props}
+              ref={ref}
+              className="lg:hidden p-2 text-white rounded-full hover:bg-[#1f2a44]"
+            >
+              <Menu size={20}/>
+            </button>
+          )}
         >
-        {/* PROFILE HEADER */}
-        <div style={{ padding: "12px 16px", width: "220px", color:"white" }}>
-            <div style={{ fontWeight: "bold" }}>Prem Sai</div>
-            <div style={{ fontSize: "12px", opacity: 0.7 }}>
-            prem@watchinit.com
-            </div>
-        </div>
-
-        <Divider />
-
-        <Dropdown.Item icon={<FaBookmark />}>
-            Bookmarks
-        </Dropdown.Item>
-
-        <Dropdown.Item icon={<MdVideoLibrary />}>
-            Studio
-        </Dropdown.Item>
-
-        <Dropdown.Item icon={<FaHistory />}>
-            History
-        </Dropdown.Item>
-
-        <Dropdown.Item icon={<FaCog />}>
-            Settings
-        </Dropdown.Item>
-
-        <Divider />
-
-        <Dropdown.Item style={{ color: "black" }}>
-            Sign out
-        </Dropdown.Item>
+          {navItems.map((item)=>(
+            <Dropdown.Item key={item}>
+              {item}
+            </Dropdown.Item>
+          ))}
         </Dropdown>
+
+
+        {/* Mobile Search Icon */}
+        <button
+          className="md:hidden p-2 text-white rounded-full hover:bg-[#1f2a44]"
+          onClick={()=>setMobileSearch(true)}
+        >
+          <Search size={20}/>
+        </button>
+
+
+        {/* Create Button */}
+        <button className="p-2 text-white rounded-full hover:bg-[#1f2a44]">
+          <Plus size={20}/>
+        </button>
+
+
+        {/* Notifications */}
+        <Badge content={6}>
+          <button className="p-2 text-white rounded-full hover:bg-[#1f2a44]">
+            <Bell size={20}/>
+          </button>
+        </Badge>
+
+
+        {/* Profile Dropdown */}
+        <Dropdown
+          placement="bottomEnd"
+          renderToggle={(props, ref)=>(
+            <Avatar
+              {...props}
+              ref={ref}
+              src="https://i.pravatar.cc/150?u=19"
+              circle
+              size="sm"
+              className="cursor-pointer"
+            />
+          )}
+        >
+
+          <div className="px-4 py-3 w-[220px] text-white">
+            <p className="font-bold">Prem Sai</p>
+            <p className="text-xs opacity-70">prem@watchinit.com</p>
+          </div>
+
+          <Divider/>
+
+          <Dropdown.Item icon={<FaBookmark/>}>
+            Bookmarks
+          </Dropdown.Item>
+
+          <Dropdown.Item icon={<MdVideoLibrary/>}>
+            Studio
+          </Dropdown.Item>
+
+          <Dropdown.Item icon={<FaHistory/>}>
+            History
+          </Dropdown.Item>
+
+          <Dropdown.Item icon={<FaCog/>}>
+            Settings
+          </Dropdown.Item>
+
+          <Divider/>
+
+          <Dropdown.Item className="text-red-500">
+            Sign out
+          </Dropdown.Item>
+
+        </Dropdown>
+
+      </div>
+
+
+      {/* MOBILE SEARCH OVERLAY */}
+      {mobileSearch && (
+
+        <div className="fixed inset-0 bg-[#020617] flex items-start p-4 z-50">
+
+          <div className="flex items-center w-full bg-[#0f172a] border border-[#1f2a44] rounded-full overflow-hidden">
+
+            <input
+              autoFocus
+              placeholder="Search videos..."
+              className="flex-1 bg-transparent outline-none px-4 py-2 text-white"
+            />
+
+            <button
+              onClick={()=>setMobileSearch(false)}
+              className="px-3 py-2 text-white"
+            >
+              <X size={20}/>
+            </button>
+
+          </div>
+
         </div>
 
-      </Navbar.Content>
+      )}
 
-    </Navbar>
+    </div>
   );
-};
-
-export default NavBar;
+}

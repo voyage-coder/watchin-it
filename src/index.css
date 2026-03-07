@@ -73,7 +73,7 @@
   padding: 12px 26px;
   font-size: 17px;
   border-radius: 30px;
-  border: 3px solid white;
+  border: 1px solid white;
   background: transparent;
   color: white;
   cursor: pointer;
@@ -83,8 +83,8 @@
 
 .btn-2:hover {
   background: rgba(6, 0, 16, 0.495);
-  border: 3px solid #380bcd;
-  color:rgb(243, 201, 112);
+  box-shadow: 0 4px 10px #380bcd;
+  color:white;
   transform: scale(1.08);
   font-weight: bold;
 }
