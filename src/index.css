@@ -112,35 +112,6 @@
   background: transparent !important;
 }
 
-.rs-dropdown-menu {
-  background-color:#0b1228;  
-  border-radius: 10px !important;
-  border: 2px solid #1f2a44;
-}
-
-.rs-dropdown-item .rs-text {
-  color: white !important;
-}
-
-.rs-dropdown-item:hover .rs-text{
-  color: #1f2a44 !important;
-  background-color: white;
-}
-
-.rs-dropdown-item:hover svg{
-  color: #1f2a44 !important;
-  background-color: white;
-}
-
-.rs-dropdown-item svg{
-  color: white;
-}
-
-
-.rs-input-group{
-  background-color: transparent;
-}
-
 
 .no-scrollbar::-webkit-scrollbar{
   display:none;

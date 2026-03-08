@@ -1,15 +1,30 @@
-import React, { useState } from "react";
-import { Avatar, Badge, Dropdown, Divider } from "rsuite";
+import React, { useState, useRef, useEffect } from "react";
 import { Search, Bell, Plus, Menu, X } from "lucide-react";
 import { FaBookmark, FaHistory, FaCog } from "react-icons/fa";
 import { MdVideoLibrary } from "react-icons/md";
-import "rsuite/dist/rsuite.min.css";
 
 export default function NavBar() {
 
   const [mobileSearch, setMobileSearch] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
+
+  const profileRef = useRef(null);
 
   const navItems = ["Home","Announcements","Communities","Chat"];
+
+  /* close profile menu when clicking outside */
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
+        setProfileMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div
@@ -20,7 +35,6 @@ export default function NavBar() {
       backdrop-blur-xl
       text-white
       border-b border-[#1f2a44]
-      rounded-4xl
       px-3 sm:px-6
       py-3
       flex items-center justify-between
@@ -30,39 +44,34 @@ export default function NavBar() {
       {/* LEFT */}
       <div className="flex items-center gap-2 sm:gap-4">
 
-        {/* Responsive Logo */}
-        <div className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl">
+        {/* LOGO */}
+        <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">
           WATCHIN IT
         </div>
 
-        {/* Desktop Navigation */}
+        {/* DESKTOP NAV */}
         <div className="hidden lg:flex gap-2">
-
           {navItems.map((item)=>(
             <button
               key={item}
               className="
-              text-white
               px-4 py-2
               rounded-full
-              border border-transparent
               transition-all duration-200
               hover:bg-[#1f2a44]
               hover:-translate-y-[2px]
               hover:shadow-md
-              hover:border-white/20
               "
             >
               {item}
             </button>
           ))}
-
         </div>
 
       </div>
 
 
-      {/* SEARCH (Tablet + Desktop) */}
+      {/* SEARCH */}
       <div className="hidden md:flex flex-1 justify-center px-4">
 
         <div className="flex items-center w-full max-w-[420px] bg-[#0f172a] border border-[#1f2a44] rounded-full overflow-hidden">
@@ -82,7 +91,7 @@ export default function NavBar() {
           />
 
           <button className="px-3 py-2 hover:bg-[#1f2a44]">
-            <Search size={18} color="white"/>
+            <Search size={18}/>
           </button>
 
         </div>
@@ -90,98 +99,135 @@ export default function NavBar() {
       </div>
 
 
-      {/* RIGHT SIDE */}
+      {/* RIGHT */}
       <div className="flex items-center gap-2 sm:gap-3">
 
-        {/* Mobile Menu */}
-        <Dropdown
-          placement="bottomStart"
-          renderToggle={(props, ref)=>(
-            <button
-              {...props}
-              ref={ref}
-              className="lg:hidden p-2 text-white rounded-full hover:bg-[#1f2a44]"
-            >
-              <Menu size={20}/>
-            </button>
-          )}
-        >
-          {navItems.map((item)=>(
-            <Dropdown.Item key={item}>
-              {item}
-            </Dropdown.Item>
-          ))}
-        </Dropdown>
-
-
-        {/* Mobile Search Icon */}
+        {/* MOBILE MENU BUTTON */}
         <button
-          className="md:hidden p-2 text-white rounded-full hover:bg-[#1f2a44]"
+          onClick={()=>setMobileMenu(!mobileMenu)}
+          className="lg:hidden p-2 rounded-full hover:bg-[#1f2a44]"
+        >
+          <Menu size={20}/>
+        </button>
+
+        {/* MOBILE MENU DROPDOWN */}
+        {mobileMenu && (
+          <div
+            className="
+            absolute top-16 left-4
+            bg-[#0b1228]
+            border border-[#1f2a44]
+            rounded-xl
+            shadow-xl
+            flex flex-col
+            w-[200px]
+            overflow-hidden
+            "
+          >
+            {navItems.map((item)=>(
+              <button
+                key={item}
+                className="
+                px-4 py-3
+                text-left
+                hover:bg-[#1f2a44]
+                "
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* MOBILE SEARCH */}
+        <button
+          className="md:hidden p-2 rounded-full hover:bg-[#1f2a44]"
           onClick={()=>setMobileSearch(true)}
         >
           <Search size={20}/>
         </button>
 
 
-        {/* Create Button */}
-        <button className="p-2 text-white rounded-full hover:bg-[#1f2a44]">
+        {/* CREATE */}
+        <button className="p-2 rounded-full hover:bg-[#1f2a44]">
           <Plus size={20}/>
         </button>
 
 
-        {/* Notifications */}
-        <Badge content={6}>
-          <button className="p-2 text-white rounded-full hover:bg-[#1f2a44]">
+        {/* NOTIFICATIONS */}
+        <div className="relative">
+          <button className="p-2 rounded-full hover:bg-[#1f2a44]">
             <Bell size={20}/>
           </button>
-        </Badge>
+
+          <span
+            className="
+            absolute -top-1 -right-1
+            bg-red-500
+            text-xs
+            px-1.5
+            rounded-full
+            "
+          >
+            6
+          </span>
+        </div>
 
 
-        {/* Profile Dropdown */}
-        <Dropdown
-          placement="bottomEnd"
-          renderToggle={(props, ref)=>(
-            <Avatar
-              {...props}
-              ref={ref}
-              src="https://i.pravatar.cc/150?u=19"
-              circle
-              size="sm"
-              className="cursor-pointer "
-            />
+        {/* PROFILE */}
+        <div className="relative" ref={profileRef}>
+
+          <img
+            src="https://i.pravatar.cc/150?u=19"
+            className="w-8 h-8 rounded-full cursor-pointer"
+            onClick={()=>setProfileMenu(!profileMenu)}
+          />
+
+          {/* PROFILE DROPDOWN */}
+          {profileMenu && (
+            <div
+              className="
+              absolute right-0 mt-3
+              w-[220px]
+              bg-[#0b1228]
+              border border-[#1f2a44]
+              rounded-xl
+              shadow-xl
+              overflow-hidden
+              "
+            >
+
+              <div className="px-4 py-3 border-b border-[#1f2a44]">
+                <p className="font-bold">Prem Sai</p>
+                <p className="text-xs opacity-70">prem@watchinit.com</p>
+              </div>
+
+              <button className="flex items-center gap-3 px-4 py-3 hover:bg-[#1f2a44] w-full">
+                <FaBookmark/> Bookmarks
+              </button>
+
+              <button className="flex items-center gap-3 px-4 py-3 hover:bg-[#1f2a44] w-full">
+                <MdVideoLibrary/> Studio
+              </button>
+
+              <button className="flex items-center gap-3 px-4 py-3 hover:bg-[#1f2a44] w-full">
+                <FaHistory/> History
+              </button>
+
+              <button className="flex items-center gap-3 px-4 py-3 hover:bg-[#1f2a44] w-full">
+                <FaCog/> Settings
+              </button>
+
+              <div className="border-t border-[#1f2a44]"></div>
+
+              <button className="px-4 py-3 text-red-500 hover:bg-[#1f2a44] w-full text-left">
+                Sign out
+              </button>
+
+            </div>
           )}
-        >
 
-          <div className="px-2 py-2 bg-[#0b1228]/90 w-[220px] text-white">
-            <p className="font-bold">Prem Sai</p>
-            <p className="text-xs opacity-70">prem@watchinit.com</p>
-          </div>
-
-          <Divider/>
-
-          <Dropdown.Item icon={<FaBookmark/>}>
-            Bookmarks
-          </Dropdown.Item>
-
-          <Dropdown.Item icon={<MdVideoLibrary/>}>
-            Studio
-          </Dropdown.Item>
-
-          <Dropdown.Item icon={<FaHistory/>}>
-            History
-          </Dropdown.Item>
-
-          <Dropdown.Item icon={<FaCog/>}>
-            Settings
-          </Dropdown.Item>
-
-          <Divider/>
-
-          <Dropdown.Item className="text-red-500">
-            Sign out
-          </Dropdown.Item>
-
-        </Dropdown>
+        </div>
 
       </div>
 
