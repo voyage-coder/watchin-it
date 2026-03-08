@@ -20,7 +20,6 @@ export default function NavBar() {
       backdrop-blur-xl
       text-white
       border-b border-[#1f2a44]
-      rounded-4xl
       px-3 sm:px-6
       py-3
       flex items-center justify-between
@@ -30,8 +29,8 @@ export default function NavBar() {
       {/* LEFT */}
       <div className="flex items-center gap-2 sm:gap-4">
 
-        {/* Responsive Logo */}
-        <div className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl">
+        {/* Logo */}
+        <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">
           WATCHIN IT
         </div>
 
@@ -45,7 +44,8 @@ export default function NavBar() {
               text-white
               px-4 py-2
               rounded-full
-              transition
+              overflow-hidden
+              transition-all duration-200
               hover:bg-[#1f2a44]
               hover:-translate-y-[2px]
               hover:shadow-md
@@ -60,7 +60,7 @@ export default function NavBar() {
       </div>
 
 
-      {/* SEARCH (Tablet + Desktop) */}
+      {/* SEARCH */}
       <div className="hidden md:flex flex-1 justify-center px-4">
 
         <div className="flex items-center w-full max-w-[420px] bg-[#0f172a] border border-[#1f2a44] rounded-full overflow-hidden">
@@ -79,8 +79,8 @@ export default function NavBar() {
             "
           />
 
-          <button className="px-3 py-2 hover:bg-[#1f2a44]">
-            <Search size={18} color="white"/>
+          <button className="px-3 py-2 rounded-full hover:bg-[#1f2a44] transition">
+            <Search size={18}/>
           </button>
 
         </div>
@@ -88,7 +88,7 @@ export default function NavBar() {
       </div>
 
 
-      {/* RIGHT SIDE */}
+      {/* RIGHT */}
       <div className="flex items-center gap-2 sm:gap-3">
 
         {/* Mobile Menu */}
@@ -98,7 +98,7 @@ export default function NavBar() {
             <button
               {...props}
               ref={ref}
-              className="lg:hidden p-2 text-white rounded-full hover:bg-[#1f2a44]"
+              className="lg:hidden p-2 rounded-full hover:bg-[#1f2a44] transition"
             >
               <Menu size={20}/>
             </button>
@@ -112,30 +112,30 @@ export default function NavBar() {
         </Dropdown>
 
 
-        {/* Mobile Search Icon */}
+        {/* Mobile Search */}
         <button
-          className="md:hidden p-2 text-white rounded-full hover:bg-[#1f2a44]"
+          className="md:hidden p-2 rounded-full hover:bg-[#1f2a44] transition"
           onClick={()=>setMobileSearch(true)}
         >
           <Search size={20}/>
         </button>
 
 
-        {/* Create Button */}
-        <button className="p-2 text-white rounded-full hover:bg-[#1f2a44]">
+        {/* Create */}
+        <button className="p-2 rounded-full hover:bg-[#1f2a44] transition">
           <Plus size={20}/>
         </button>
 
 
         {/* Notifications */}
         <Badge content={6}>
-          <button className="p-2 text-white rounded-full hover:bg-[#1f2a44]">
+          <button className="p-2 rounded-full hover:bg-[#1f2a44] transition">
             <Bell size={20}/>
           </button>
         </Badge>
 
 
-        {/* Profile Dropdown */}
+        {/* Profile */}
         <Dropdown
           placement="bottomEnd"
           renderToggle={(props, ref)=>(
@@ -145,12 +145,12 @@ export default function NavBar() {
               src="https://i.pravatar.cc/150?u=19"
               circle
               size="sm"
-              className="cursor-pointer "
+              className="cursor-pointer"
             />
           )}
         >
 
-          <div className="px-2 py-2 bg-[#0b1228]/90 w-[220px] text-white">
+          <div className="px-3 py-2 bg-[#0b1228]/90 w-[220px] text-white">
             <p className="font-bold">Prem Sai</p>
             <p className="text-xs opacity-70">prem@watchinit.com</p>
           </div>
@@ -184,7 +184,7 @@ export default function NavBar() {
       </div>
 
 
-      {/* MOBILE SEARCH OVERLAY */}
+      {/* MOBILE SEARCH */}
       {mobileSearch && (
 
         <div className="fixed inset-0 bg-[#020617] flex items-start p-4 z-50">
@@ -199,7 +199,7 @@ export default function NavBar() {
 
             <button
               onClick={()=>setMobileSearch(false)}
-              className="px-3 py-2 text-white"
+              className="px-3 py-2"
             >
               <X size={20}/>
             </button>
