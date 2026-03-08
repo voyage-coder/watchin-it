@@ -37,6 +37,41 @@ const shorts = [
     views:"3.4M",
     time:"5 days ago",
     thumbnail:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+  },
+  {
+    id:6,
+    title:"Amazing trick shot 🎯",
+    views:"1.2M",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1517649763962-0c623066013b"
+  },
+  {
+    id:7,
+    title:"Cat backflip 🐱",
+    views:"890K",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9"
+  },
+  {
+    id:8,
+    title:"Cooking hack",
+    views:"2.1M",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"
+  },
+  {
+    id:9,
+    title:"Street magic",
+    views:"450K",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1520975922323-8a3fdfc4f4c5"
+  },
+  {
+    id:10,
+    title:"5 second life hacks",
+    views:"3.4M",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
   }
 ];
 
@@ -73,6 +108,86 @@ const videos = [
   },
   {
     id:4,
+    description:"Design beautiful interfaces",
+    channel:"DesignHub",
+    channelImg:"https://randomuser.me/api/portraits/women/22.jpg",
+    views:"310K views",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1558655146-d09347e92766",
+    duration:"14:18"
+  },
+  {
+    id:5,
+    description:"Build modern React apps step by step",
+    channel:"CodeLab",
+    channelImg:"https://randomuser.me/api/portraits/men/32.jpg",
+    views:"420K views",
+    time:"3 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    duration:"32:14"
+  },
+  {
+    id:6,
+    description:"React + Node + MongoDB tutorial",
+    channel:"DevSimplified",
+    channelImg:"https://randomuser.me/api/portraits/men/45.jpg",
+    views:"820K views",
+    time:"1 month ago",
+    thumbnail:"https://images.unsplash.com/photo-1518770660439-4636190af475",
+    duration:"18:42"
+  },
+  {
+    id:7,
+    description:"Master JS fundamentals quickly",
+    channel:"JS Academy",
+    channelImg:"https://randomuser.me/api/portraits/men/12.jpg",
+    views:"1.1M views",
+    time:"2 weeks ago",
+    thumbnail:"https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+    duration:"24:51"
+  },
+  {
+    id:8,
+    description:"Design beautiful interfaces",
+    channel:"DesignHub",
+    channelImg:"https://randomuser.me/api/portraits/women/22.jpg",
+    views:"310K views",
+    time:"5 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1558655146-d09347e92766",
+    duration:"14:18"
+  },
+  {
+    id:9,
+    description:"Build modern React apps step by step",
+    channel:"CodeLab",
+    channelImg:"https://randomuser.me/api/portraits/men/32.jpg",
+    views:"420K views",
+    time:"3 days ago",
+    thumbnail:"https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    duration:"32:14"
+  },
+  {
+    id:10,
+    description:"React + Node + MongoDB tutorial",
+    channel:"DevSimplified",
+    channelImg:"https://randomuser.me/api/portraits/men/45.jpg",
+    views:"820K views",
+    time:"1 month ago",
+    thumbnail:"https://images.unsplash.com/photo-1518770660439-4636190af475",
+    duration:"18:42"
+  },
+  {
+    id:11,
+    description:"Master JS fundamentals quickly",
+    channel:"JS Academy",
+    channelImg:"https://randomuser.me/api/portraits/men/12.jpg",
+    views:"1.1M views",
+    time:"2 weeks ago",
+    thumbnail:"https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+    duration:"24:51"
+  },
+  {
+    id:12,
     description:"Design beautiful interfaces",
     channel:"DesignHub",
     channelImg:"https://randomuser.me/api/portraits/women/22.jpg",
@@ -155,7 +270,7 @@ export default function Hero(){
 
       {/* SHORTS */}
 
-      <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-3">
+      <div className="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar pb-3">
 
         {shorts.map((short)=>(
           
@@ -163,19 +278,19 @@ export default function Hero(){
             key={short.id}
             onClick={()=>openVideo(short)}
             className="
-            group
-            min-w-[140px]
-            sm:min-w-[180px]
-            h-[260px]
-            sm:h-[320px]
-            rounded-xl
-            overflow-hidden
-            relative
-            cursor-pointer
-            transition
-            hover:-translate-y-2
-            hover:scale-[1.04]
-            "
+              group
+              w-[160px]
+              sm:w-[200px]
+              aspect-[9/16]
+              rounded-xl
+              overflow-hidden
+              relative
+              cursor-pointer
+              flex-shrink-0
+              transition
+              hover:-translate-y-2
+              hover:scale-[1.04]
+              "
           >
 
             <img
@@ -229,29 +344,12 @@ export default function Hero(){
           <div
             key={video.id}
             onClick={()=>openVideo(video)}
-            className="cursor-pointer group"
+            className="cursor-pointer group flex flex-col"
           >
 
+            {/* thumbnail */}
+
             <div className="relative rounded-xl overflow-hidden">
-
-                          <div className="flex items-center gap-2 mt-2">
-
-              <img
-                src={video.channelImg}
-                className="w-6 h-6 sm:w-7 sm:h-7 rounded-full"
-              />
-
-              <div className="text-xs text-gray-300">
-
-                <p>{video.channel}</p>
-
-                <p className="text-gray-500">
-                  {video.views} • {video.time}
-                </p>
-
-              </div>
-
-            </div>
 
               <img
                 src={video.thumbnail}
@@ -264,11 +362,32 @@ export default function Hero(){
 
             </div>
 
-            <p className="text-gray-400 text-xs mt-1">
+            {/* description */}
+
+            <p className="text-gray-300 text-sm mt-2">
               {video.description}
             </p>
 
+            {/* channel info */}
 
+            <div className="flex items-center gap-2 mt-2">
+
+              <img
+                src={video.channelImg}
+                className="w-7 h-7 rounded-full"
+              />
+
+              <div className="text-xs text-gray-400">
+
+                <p>{video.channel}</p>
+
+                <p>
+                  {video.views} • {video.time}
+                </p>
+
+              </div>
+
+            </div>
 
           </div>
 

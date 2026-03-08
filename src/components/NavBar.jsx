@@ -9,7 +9,7 @@ export default function NavBar() {
 
   const [mobileSearch, setMobileSearch] = useState(false);
 
-  const navItems = ["Home","Movies","Communities","Chat"];
+  const navItems = ["Home","Announcements","Communities","Chat"];
 
   return (
     <div
@@ -145,12 +145,12 @@ export default function NavBar() {
               src="https://i.pravatar.cc/150?u=19"
               circle
               size="sm"
-              className="cursor-pointer"
+              className="cursor-pointer "
             />
           )}
         >
 
-          <div className="px-4 py-3 w-[220px] text-white">
+          <div className="px-2 py-2 bg-[#0b1228]/90 w-[220px] text-white">
             <p className="font-bold">Prem Sai</p>
             <p className="text-xs opacity-70">prem@watchinit.com</p>
           </div>
